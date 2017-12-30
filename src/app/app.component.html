@@ -1,36 +1,32 @@
 <nav class="navbar navbar-light fixed-top">
-  <span class="navbar-text">
+  <span class="navbar-text mr-3">
     FM 92.5
   </span>
+  <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onend()">跳过</button>
   <span class="mr-auto"></span>
   <span class="navbar-text">
-    {{ __currentTime | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'}}
+    {{ __currentTime | amDateFormat:'LL LTS'}}
   </span>
 </nav>
 <div class="player-overlay d-flex flex-column justify-content-center align-items-center p-3">
   <h1 class="text-muted">正在播放</h1>
   <div class="card mb-3 border-primary" style="width: 50rem" *ngIf="playerList">
     <div class="card-body">
-      <h1 class="display-3">{{ playerList[__current].name }}</h1>
+      <h2 class="mb-0"><small class="text-muted">将在 {{ __end_time | amTimeAgo}}结束</small></h2>
+      <h1 class="display-3 mt-0">{{ playerList[__current].name }}</h1>
       <div class="progress">
         <div class="progress-bar" [ngStyle]="{ width: __played * 100 + '%' }"></div>
       </div>
     </div>
   </div>
-  <h1 class="text-muted mt-3">接下来是</h1>
-  <div class="card-deck" style="width: 50rem">
-    <div class="card m-3" *ngIf="__current + 1 < __total">
+  <h1 class="text-muted mt-3">即将开始</h1>
+  <div *ngFor="let i of __upcoming_card">
+    <div class="card m-1" style="width: 25rem" *ngIf="i + __current + 1 < __total" [ngClass]="{ 'border-warning': scheduler[i + __current + 1] - __currentTime <= 60 * 1000 }">
       <div class="card-body">
-        <h1 class="card-title">{{ playerList[__current + 1].name }}</h1>
-        <p class="card-text">将于 {{ scheduler[__current + 1] | amDateFormat:'h:mm:ss'}} ({{ scheduler[__current + 1] | amTimeAgo}}) 开始</p>
-      </div>
-    </div>
-    <div class="card m-3" *ngIf="__current + 2 < __total">
-      <div class="card-body">
-        <h1 class="card-title">{{ playerList[__current + 2].name }}</h1>
-        <p class="card-text">将于 {{ scheduler[__current + 2] | amDateFormat:'h:mm:ss'}} ({{ scheduler[__current + 2] | amTimeAgo}}) 开始</p>
+        <span><b>{{ scheduler[i + __current + 1] | amDateFormat:'H:mm'}} {{ scheduler[i + __current + 1] | amTimeAgo}}</b> {{ playerList[i + __current + 1].name }}</span>
       </div>
     </div>
   </div>
+
 
 </div>
