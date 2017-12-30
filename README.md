@@ -1,6 +1,18 @@
-# Player
+# TinyPlayer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
+I personally made this project to play English listening comprehension on classroom TV, while making all player information available on TV.
+
+## Create config file
+
+Create `/src/assets/sound.json`, and build this project with `ng build`. Here's an example:
+
+```json
+[
+  { "name": "My Fault", "url": "/assets/My fault.mp3" },
+  { "name": "On The Wing", "url": "/assets/On the wing.mp3" },
+  { "name": "What About Us", "url": "/assets/What about us.mp3" }
+]
+```
 
 ## Development server
 
