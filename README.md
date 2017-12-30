@@ -2,6 +2,8 @@
 
 I personally made this project to play English listening comprehension on classroom TV, while making all player information available on TV.
 
+![Screenshot](https://user-images.githubusercontent.com/4198311/34453622-fcb56c76-ed93-11e7-8b02-61d4083759fb.png)
+
 ## Create config file
 
 Create `/src/assets/sound.json`, and build this project with `ng build`. Here's an example:

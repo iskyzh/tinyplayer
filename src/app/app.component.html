@@ -9,7 +9,6 @@
   </span>
 </nav>
 <div class="player-overlay d-flex flex-column justify-content-center align-items-center p-3">
-  <h1 class="text-muted">正在播放</h1>
   <div class="card mb-3 border-primary" style="width: 50rem" *ngIf="playerList">
     <div class="card-body">
       <h2 class="mb-0"><small class="text-muted">将在 {{ __end_time | amTimeAgo}}结束</small></h2>
@@ -19,11 +18,11 @@
       </div>
     </div>
   </div>
-  <h1 class="text-muted mt-3">即将开始</h1>
   <div *ngFor="let i of __upcoming_card">
-    <div class="card m-1" style="width: 25rem" *ngIf="i + __current + 1 < __total" [ngClass]="{ 'border-warning': scheduler[i + __current + 1] - __currentTime <= 60 * 1000 }">
+    <div class="card m-1" style="width: 25rem" *ngIf="i + __current + 1 < __total" 
+    [ngClass]="{ 'bg-warning': scheduler[i + __current + 1] - __currentTime <= 60 * 1000, 'text-white': scheduler[i + __current + 1] - __currentTime <= 60 * 1000 }">
       <div class="card-body">
-        <span><b>{{ scheduler[i + __current + 1] | amDateFormat:'H:mm'}} {{ scheduler[i + __current + 1] | amTimeAgo}}</b> {{ playerList[i + __current + 1].name }}</span>
+        <span><b>{{ scheduler[i + __current + 1] | amDateFormat:'H:mm'}} {{ scheduler[i + __current + 1] | amTimeAgo}}</b> / {{ playerList[i + __current + 1].name }}</span>
       </div>
     </div>
   </div>
